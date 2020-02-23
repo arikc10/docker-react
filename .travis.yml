@@ -6,9 +6,10 @@ before_install:
   - docker build -t arikc/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run  arikc/docker-react npm run test 
+  - docker run -e CI=true arikc/docker-react npm run test 
 
 deploy:
+  edge: true
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "docker-react"
